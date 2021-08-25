@@ -62,33 +62,19 @@ class _HomeState extends State<Home> {
         child: CircleAvatar(backgroundColor: Colors.blue, radius: 128),
       );
 
-  Widget buildTitle(String text) => Text(
-        text,
-        style: TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
+  Widget buildTitle(String text) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Text(text, style: TextStyle(fontSize: 64, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
       );
 
-  Widget buildParagraph(String text) => Text(
-        text,
-        style: TextStyle(fontSize: 12),
-        textAlign: TextAlign.center,
-      );
+  Widget buildParagraph(String text) => Text(text, style: TextStyle(fontSize: 12), textAlign: TextAlign.center);
 
-  Widget get icons => Padding(
+  Widget get icons => GridView(
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: MediaQuery.of(context).size.width <= 980 ? 4 : 8,
+            childAspectRatio: MediaQuery.of(context).size.width <= 980 ? 1 : 2),
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            iconsRow1,
-            iconsRow2,
-          ],
-        ),
-      );
-}
-
-Widget get iconsRow1 => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           DevIcon(icon: DevIcons.html5Plain),
           DevIcon(icon: DevIcons.css3Plain),
@@ -96,15 +82,6 @@ Widget get iconsRow1 => Padding(
           DevIcon(icon: DevIcons.typescriptPlain),
           DevIcon(icon: DevIcons.javaPlain),
           DevIcon(icon: DevIcons.dartPlain),
-        ],
-      ),
-    );
-
-Widget get iconsRow2 => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
           DevIcon(icon: DevIcons.flutterPlain),
           DevIcon(icon: DevIcons.angularjsPlain),
           DevIcon(icon: DevIcons.springPlain),
@@ -113,9 +90,11 @@ Widget get iconsRow2 => Padding(
           DevIcon(icon: DevIcons.androidPlain),
           DevIcon(icon: DevIcons.firebasePlain),
           DevIcon(icon: DevIcons.wordpressPlain),
+          DevIcon(icon: DevIcons.dockerPlain),
+          DevIcon(icon: DevIcons.jetbrainsPlain),
         ],
-      ),
-    );
+      );
+}
 
 class DevIcon extends StatelessWidget {
   final IconData icon;
